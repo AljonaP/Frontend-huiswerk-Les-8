@@ -436,7 +436,6 @@ let output = ""
     }
     return output;
 }
-
 console.log(tvSizes(inventory[0].availableSizes))
 // console.log(tvSizes(inventory[1].availableSizes))
 // console.log(tvSizes(inventory[2].availableSizes))
