@@ -459,7 +459,6 @@ console.log(tvSizes(inventory[0].availableSizes))
 // console.log(tvSizes(inventory.availableSizes))
 
 
-
 // Opdracht 5d: Zorg ervoor de informatie van één van de tv's zoals het voorbeeld wordt weergegeven op de pagina. Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
 for (let i = 0; i < inventory.length; i++) {
     console.log(infoAboutTv(inventory,i));
