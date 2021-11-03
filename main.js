@@ -448,23 +448,22 @@ console.log(tvSizes(inventory[0].availableSizes))
 // function tvSizes(arrInput) { //hiermee is de array bedoeld vanuit de availableSizesarray waardes =inventory[]
 //     let tvSizeInInch = arrInput //aanroepen van de waarde uit de availableSizes array. Is dat een juiste manier?
 //     let tvSizeInCm = tvSizeInInch * 2.54;
-//     if (arrInput.length === 1 || arrInput.lastIndex) { //als de lengte van availablesizes[] is gelijk aan 1 OF is het laast Index van availablesize[], dan consol.log a string (zie onder)
-//
-//         return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" //consol.log of return?
-//     } else if (arrInput.length > 1 && !== arrInput.lastIndex){ //als de lengte van availableSizes[] is meer dan 1, maar niet gelijk aan last Index van availableSizes[], dan consol.log a string (zie onder)
-//         return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" + " | "
-//     }
-//
-// }
-// console.log(tvSizes(inventory.availableSizes))
+for (let i=0; i < arrInput.lenght; i++) {
+    if (arrInput.length === 1 || arrInput.lastIndex) { //als de lengte van availablesizes[] is gelijk aan 1 OF is het laast Index van availablesize[], dan consol.log a string (zie onder)
+        return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" //consol.log of return?
+    } else if (arrInput.length > 1 && !== arrInput.lastIndex){ //als de lengte van availableSizes[] is meer dan 1, maar niet gelijk aan last Index van availableSizes[], dan consol.log a string (zie onder)
+        return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" + " | "
+    }
 
+}
+console.log(tvSizes(inventory.availableSizes))
 
 // Opdracht 5d: Zorg ervoor de informatie van één van de tv's zoals het voorbeeld wordt weergegeven op de pagina. Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
-for (let i = 0; i < inventory.length; i++) {
-    console.log(infoAboutTv(inventory,i));
-    console.log(priceTv(inventory,i));
-    console.log(tvSizes(inventory,i));
-}
+// for (let i = 0; i < inventory.length; i++) {
+//     console.log(infoAboutTv(inventory,i));
+//     console.log(priceTv(inventory,i));
+//     console.log(tvSizes(inventory,i));
+// }
 
 
 // Opdracht 5e: Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld. Dit wil je natuurlijk niet acht keer opnieuw schrijven, want nu zijn het 8 tv's, maar in de toekomst misschien wel 200! Gebruik in deze functie de voorgaande functies die je hebt geschreven, om onderdelen van de data te formatten. De overkoepelende "tv-generator-functie" verwacht één parameter: de volledige array met tv-objecten. Vergeet 'm niet aan te roepen!
