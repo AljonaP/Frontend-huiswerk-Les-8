@@ -396,7 +396,7 @@ console.log(resultTvBrand);
 // DONE Opdracht 5b: Zorg ervoor dat de prijs van een tv netjes geformat wordt. Maak een functie die één tv-prijs als parameter verwacht (zoals 379) en daar de volgende string van maakt: €379,-. Test of jouw functie ook werkt wanneer er een andere tv-prijs wordt meegegeven.
 
 // Variant 1.
-function priceTv(tv, fields) {
+function priceTv(tv, fields) { //tv = arr, fields = index)
     let arrPrices = [];
     fields.forEach(field => {
         arrPrices.push(tv[field]);
@@ -415,7 +415,10 @@ console.log(resultTvPrice);
 
 
 
-
+//Variant 3.
+// function priceTv(tv, fields){ //tv = arr, fields = index)
+//     return "€" + tv[fields].price + ",-" ;
+// }
 
 // Opdracht 5c: Zorg ervoor dat er een string wordt gegenereerd voor alle beschikbare schermgroottes van één tv, in zowel inches als cm. Doe dit door een functie te schrijven die één screen-sizes array verwacht ( zoals inventory[0].availableSizes) en de groottes op de volgende manier samenvoegt: [schermgrootte] inches ([schermgrootte omgerekend]cm) | [schermgrootte] inches ([schermgrootte omgerekend]cm) etc. Als een tv maar één schermgrootte heeft ([32]) wordt de output 32 inch (81 cm). Wanneer een tv vier schermgroottes heeft ([43, 50, 55, 58]) wordt de output 43 inch (109 cm) | 50 inch (127 cm) | 58 inch (147 cm). Test of jouw functie werkt in alle mogelijke gevallen.
 
@@ -423,7 +426,7 @@ console.log(resultTvPrice);
 //  43 inch (109 cm) | 50 inch (127 cm) | 58 inch (147 cm)
 
 
-
+//Variant 1.
 function tvSizes(arrInput){
 let output = ""
 
@@ -445,18 +448,20 @@ console.log(tvSizes(inventory[0].availableSizes))
 // console.log(tvSizes(inventory[6].availableSizes))
 // console.log(tvSizes(inventory[7].availableSizes))
 
-// function tvSizes(arrInput) { //hiermee is de array bedoeld vanuit de availableSizesarray waardes =inventory[]
-//     let tvSizeInInch = arrInput //aanroepen van de waarde uit de availableSizes array. Is dat een juiste manier?
-//     let tvSizeInCm = tvSizeInInch * 2.54;
-for (let i=0; i < arrInput.lenght; i++) {
-    if (arrInput.length === 1 || arrInput.lastIndex) { //als de lengte van availablesizes[] is gelijk aan 1 OF is het laast Index van availablesize[], dan consol.log a string (zie onder)
-        return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" //consol.log of return?
-    } else if (arrInput.length > 1 && !== arrInput.lastIndex){ //als de lengte van availableSizes[] is meer dan 1, maar niet gelijk aan last Index van availableSizes[], dan consol.log a string (zie onder)
-        return tvSizeInInch + " inch " + "(" + tvSizeInCm + " cm)" + " | "
-    }
+// //Variant 2.
+// function tvSizes(arr,index){
+//     let size = arr[index].availableSizes[0];
+//     let sizes = size + "inch (" + Math.round(size*2.54) + " cm)";
+//     if (arr[index].availableSizes.length > 1){
+//         for (let i = 1; i < arr[index].availableSizes.length; i++) {
+//             size = arr[index].availableSizes[i];
+//             sizes = sizes + " | " + size + "inch (" + Math.round(size*2.54) + " cm)";
+//         }
+//     }
+//     return sizes;
+// }
 
-}
-console.log(tvSizes(inventory.availableSizes))
+
 
 // Opdracht 5d: Zorg ervoor de informatie van één van de tv's zoals het voorbeeld wordt weergegeven op de pagina. Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
 // for (let i = 0; i < inventory.length; i++) {
@@ -467,6 +472,40 @@ console.log(tvSizes(inventory.availableSizes))
 
 
 // Opdracht 5e: Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld. Dit wil je natuurlijk niet acht keer opnieuw schrijven, want nu zijn het 8 tv's, maar in de toekomst misschien wel 200! Gebruik in deze functie de voorgaande functies die je hebt geschreven, om onderdelen van de data te formatten. De overkoepelende "tv-generator-functie" verwacht één parameter: de volledige array met tv-objecten. Vergeet 'm niet aan te roepen!
+const opdracht5d = document.getElementById("opdracht5d");
+
+const parOpdr5dReg1 = document.createElement("p");
+parOpdr5dReg1.textContent = tvNameType(inventory,2);
+opdracht5d.appendChild(parOpdr5dReg1);
+
+const parOpdr5dReg2 = document.createElement("p");
+parOpdr5dReg2.textContent = tvPrice(inventory,2);
+opdracht5d.appendChild(parOpdr5dReg2);
+
+const parOpdr5dReg3 = document.createElement("p");
+parOpdr5dReg3.textContent = tvSizes(inventory,2);
+opdracht5d.appendChild(parOpdr5dReg3);
+
+function showDataAll(arr,id){
+    const element = document.getElementById(id);
+    for (let i = 0; i < arr.length; i++) {
+        const div = document.createElement("div");
+        div.setAttribute("class", "margin-bottom");
+        const parReg1 = document.createElement("p");
+        parReg1.textContent = tvNameType(arr,i);
+        div.appendChild(parReg1);
+        const parReg2 = document.createElement("p");
+        parReg2.textContent = tvPrice(arr,i);
+        div.appendChild(parReg2);
+        const parReg3 = document.createElement("p");
+        parReg3.textContent = tvSizes(arr,i);
+        div.appendChild(parReg3);
+        element.appendChild(div);
+    }
+}
+
 
 // Bonusopdracht
 // Maak drie knoppen op de pagina: Sorteer op prijs, AmbiLight TV's en Uitverkochte exemplaren. Gebruik de code die je in opdracht 2b, 2c en 2d hebt gemaakt en schrijf dit om naar functies zodat je ze kunt aanroepen op het moment dat de buttons geklikt worden. Zorg ervoor dat de functies de uitkomsten in de de console loggen als de gebruiker op de bijbehorende knop klikt. Tip: lees hiervoor paragraaf 7.4 op EdHub eens door!
+
+showDataAll(inventory,"opdracht5e");
